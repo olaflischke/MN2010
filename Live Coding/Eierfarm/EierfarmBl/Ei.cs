@@ -6,8 +6,10 @@ namespace EierfarmBl
     {
         // Irgendwo anders:
         // Ei ei = new Ei();
-        public Ei()
+        public Ei(IEileger mutter)
         {
+            this.Mutter = mutter;
+
             this.Legedatum = DateTime.Now;
 
             Random random = new Random();
@@ -16,7 +18,7 @@ namespace EierfarmBl
             // DirectCast - liefert Exception wenn Cast fehlschlägt
         }
         // Ei ei=new Ei(50);
-        public Ei(int gewicht) : this()
+        public Ei(int gewicht)// : this()
         {
             this.Gewicht = gewicht;
         }
@@ -45,6 +47,7 @@ namespace EierfarmBl
 
         public DateTime Legedatum { get; set; }
         public EiFarbe Farbe { get; set; }
+        public IEileger Mutter { get; set; }
     }
 
     public enum EiFarbe

@@ -9,8 +9,13 @@ namespace EierfarmBl
     /// <summary>
     /// Stellt ein Huhn dar.
     /// </summary>
-    public class Huhn
+    public class Huhn : Gefluegel
     {
+        /// <summary>
+        /// Erzeugt eine neue Huhn-Instanz
+        /// mit dem gg. Namen.
+        /// </summary>
+        /// <param name="name">Name des Huhn.</param>
         public Huhn(string name)
         {
             this.Name = name;
@@ -18,7 +23,7 @@ namespace EierfarmBl
             this.Id = Guid.NewGuid();
         }
 
-        public void Fressen()
+        public override void Fressen()
         {
             if (this.Gewicht <= 3000)
             {
@@ -27,11 +32,11 @@ namespace EierfarmBl
             }
         }
 
-        public void EiLegen()
+        public override void EiLegen()
         {
-            if (this.Gewicht>1500 && !this.Eier.Any(ei => DateTime.Now < ei.Legedatum.AddHours(3)))
+            if (this.Gewicht > 1500 && !this.Eier.Any(ei => DateTime.Now < ei.Legedatum.AddHours(3)))
             {
-                Ei ei = new Ei();
+                Ei ei = new Ei(this);
                 this.Gewicht -= ei.Gewicht;
                 this.Eier.Add(ei);
             }
@@ -39,11 +44,7 @@ namespace EierfarmBl
         }
 
         //public DateTime LetztesEiLegen { get; set; }
-        public double Gewicht { get; set; }
-        public string Name { get; set; }
-        public Guid Id { get; set; }
 
-        public List<Ei> Eier { get; set; }
     }
 }
 
