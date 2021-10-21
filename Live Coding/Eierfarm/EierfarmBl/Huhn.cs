@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EierfarmBl
 {
+    /// <summary>
+    /// Stellt ein Huhn dar.
+    /// </summary>
     public class Huhn
     {
         public Huhn(string name)
